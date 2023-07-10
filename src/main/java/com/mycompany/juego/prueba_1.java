@@ -19,6 +19,7 @@ public class prueba_1 extends javax.swing.JFrame {
         presentacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         bt_torre.setBackground(new java.awt.Color(120, 107, 147));
         bt_torre.setForeground(new java.awt.Color(243, 245, 246));
