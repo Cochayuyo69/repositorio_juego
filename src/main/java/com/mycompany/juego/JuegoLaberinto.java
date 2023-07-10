@@ -179,6 +179,7 @@ public class JuegoLaberinto extends JFrame implements KeyListener {
         // Verificar si el jugador llegó al punto de fin
         if (jugadorX == finX && jugadorY == finY) {
             JOptionPane.showMessageDialog(this, "¡Felicidades! Has llegado al final del laberinto.");
+            Operaciones.generarOperacion();
             reiniciarJuego();
         }
     }
@@ -207,5 +208,65 @@ public class JuegoLaberinto extends JFrame implements KeyListener {
                 new JuegoLaberinto();
             }
         });
+    }
+    
+    public static void generarOperacion() {
+        int num1 = generarNumeroAleatorio(1, 10); // Genera un número aleatorio entre 1 y 10
+        int num2 = generarNumeroAleatorio(1, 10);
+        String operador = generarOperadorAleatorio();
+        int resultadoEsperado = calcularResultado(num1, num2, operador);
+        
+        String pregunta = num1 + " " + operador + " " + num2 + " = ?";
+        String respuesta = JOptionPane.showInputDialog(null, pregunta);
+        
+        while (!esRespuestaCorrecta(respuesta, resultadoEsperado)) {
+            int opcion = JOptionPane.showConfirmDialog(null, "Respuesta incorrecta. ¿Deseas volver a intentarlo?");
+            if (opcion == JOptionPane.YES_OPTION) {
+                respuesta = JOptionPane.showInputDialog(null, pregunta);
+            } else {
+                generarOperacion();
+                return;
+            }
+        }
+        
+        JOptionPane.showMessageDialog(null, "¡Respuesta correcta!");
+    }
+
+    public static int generarNumeroAleatorio(int min, int max) {
+        return min + (int) (Math.random() * (max - min + 1));
+    }
+
+    public static String generarOperadorAleatorio() {
+        String[] operadores = {"+", "-", "*", "/"};
+        int indice = generarNumeroAleatorio(0, operadores.length - 1);
+        return operadores[indice];
+    }
+
+    public static int calcularResultado(int num1, int num2, String operador) {
+        int resultado = 0;
+        switch (operador) {
+            case "+":
+                resultado = num1 + num2;
+                break;
+            case "-":
+                resultado = num1 - num2;
+                break;
+            case "*":
+                resultado = num1 * num2;
+                break;
+            case "/":
+                resultado = num1 / num2;
+                break;
+        }
+        return resultado;
+    }
+
+    public static boolean esRespuestaCorrecta(String respuesta, int resultadoEsperado) {
+        try {
+            int respuestaInt = Integer.parseInt(respuesta);
+            return respuestaInt == resultadoEsperado;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
