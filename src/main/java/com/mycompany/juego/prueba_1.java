@@ -35,8 +35,18 @@ public class prueba_1 extends javax.swing.JFrame {
                 bt_torreMouseExited(evt);
             }
         });
+        bt_torre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_torreActionPerformed(evt);
+            }
+        });
 
         bt_mini2.setText("jButton2");
+        bt_mini2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_mini2ActionPerformed(evt);
+            }
+        });
 
         bt_mini3.setText("jButton3");
 
@@ -107,9 +117,18 @@ public class prueba_1 extends javax.swing.JFrame {
     private void bt_torreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_torreMouseClicked
         torre_hanoi mtorre_hanoi = new torre_hanoi();
         mtorre_hanoi.setVisible(true);
-        prueba_1 mprueba_1 = new prueba_1();
         dispose();
     }//GEN-LAST:event_bt_torreMouseClicked
+
+    private void bt_torreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_torreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_torreActionPerformed
+
+    private void bt_mini2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_mini2ActionPerformed
+        JuegoLaberinto MJL = new JuegoLaberinto();
+        MJL.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bt_mini2ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
